@@ -20,4 +20,7 @@ if __name__ == "__main__":
             print(f"[MISSING] {f}")
         else:
             print(f"[OK] {f}: {sha256_file(f)}")
+codex/inspect-repo-file-tree-and-health-report-2025-12-02
 
+=======
+ main
