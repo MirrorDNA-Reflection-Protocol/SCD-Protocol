@@ -1,0 +1,11 @@
+{
+  "version": "v3.0",
+  "turn": 3,
+  "state": {
+    "project_name": "MirrorDNA",
+    "rate_limit": 25,
+    "endpoint": "staging"
+  },
+  "constitutional_lock": false,
+  "checksum": "eb3f08b6b99d1663e23370ec237592db26cec18920fc7279941eefe5c5da14ed"
+}

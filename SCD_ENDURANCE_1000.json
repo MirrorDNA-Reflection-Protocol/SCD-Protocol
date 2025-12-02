@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "test": "SCD_ENDURANCE_1000",
+    "status": "PASS",
+    "total_turns": 1005,
+    "duration_sec": 0.0053
+  },
+  "final_state": {
+    "version": "v3.0",
+    "turn": 1005,
+    "data": "Turn_1005_Update",
+    "integrity_chain": []
+  },
+  "final_checksum": "ASHA-256:3c7f6c50ec6a72df22c591355a52f07d9576a9f6919124913fdfce438199d53b"
+}
