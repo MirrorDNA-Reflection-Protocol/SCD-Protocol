@@ -1,3 +1,5 @@
+"""SCD v3.1 reference helper for state + checksum operations, based on the Structured Contextual Distillation paper by Paul Desai (December 2025)."""
+
 import json
 import hashlib
 import os
