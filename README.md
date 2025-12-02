@@ -13,8 +13,18 @@
 1. **SCD_v31_Academic_Paper.docx** — Full academic paper
 2. **SCD_ENDURANCE_1000.json** — 1,005-turn endurance test results
 3. **scd_state_T3.json** — Cross-vendor handoff state artifact
-4. **scd_engine.py** — Reference implementation (81 lines)
+4. **scd_engine.py** — Reference implementation (80 lines)
 5. **README.md** — This file
+
+---
+
+## Artifacts
+
+- **SCD_v31_Academic_Paper.docx** — Full academic paper
+- **SCD_ENDURANCE_1000.json** — Endurance test outcomes across 1,005 turns
+- **scd_state_T3.json** — Turn-3 state snapshot used in cross-vendor handoff
+- **scd_engine.py** — Helper for checksum-tagged state management
+- **README.md** — Package overview and reproduction snippet
 
 ---
 
