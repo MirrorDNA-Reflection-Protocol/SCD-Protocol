@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mirrordna-scd"
+version = "1.0.0"
+description = "Deterministic state management for AI conversations with ASHA-256 checksumming"
+authors = [{name = "Paul Desai", email = "paul@mirrordna.org"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "ai",
+    "llm",
+    "state-management",
+    "determinism",
+    "verification",
+    "checksum",
+    "artificial-intelligence",
+    "conversation-state"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol"
+Documentation = "https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol#readme"
+Repository = "https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol"
+"Bug Tracker" = "https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol/issues"
+Changelog = "https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol/releases"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mirrordna_scd*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

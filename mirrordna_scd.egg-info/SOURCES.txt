@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+mirrordna_scd/__init__.py
+mirrordna_scd/core.py
+mirrordna_scd.egg-info/PKG-INFO
+mirrordna_scd.egg-info/SOURCES.txt
+mirrordna_scd.egg-info/dependency_links.txt
+mirrordna_scd.egg-info/top_level.txt
+tests/test_core.py
