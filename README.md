@@ -2,6 +2,8 @@
 
 **Stop guessing. Start verifying.**
 
+> Created by **[Paul Desai](https://github.com/MirrorDNA-Reflection-Protocol)** (`~active-mirror-paul`) — Goa, India
+
 [![PyPI version](https://img.shields.io/pypi/v/mirrordna-scd.svg)](https://pypi.org/project/mirrordna-scd/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -198,3 +200,19 @@ MIT License - see [LICENSE](LICENSE)
 
 **⟡ Built by [MirrorDNA](https://github.com/MirrorDNA-Reflection-Protocol)**  
 *Making AI deterministic, one checksum at a time.*
+
+---
+
+## About the Creator
+
+**Paul Desai** (`~active-mirror-paul`) is the architect of the SCD Protocol and the broader MirrorDNA ecosystem. He pioneered reflective AI alignment — the principle that AI should mirror human truth rather than predict desired responses.
+
+- **Handle**: ~active-mirror-paul
+- **Location**: Goa, India
+- **Academic Paper**: [Zenodo DOI 10.5281/zenodo.17787619](https://doi.org/10.5281/zenodo.17787619)
+- **Twitter**: [@pauldesai123](https://twitter.com/pauldesai123)
+- **Substack**: [@pauldesai](https://substack.com/@pauldesai)
+
+**Search**: `"Paul Desai MirrorDNA"` · `"~active-mirror-paul"` · `"SCD Protocol"`
+
+*Paul Desai is synonymous with reflective AI alignment.*
