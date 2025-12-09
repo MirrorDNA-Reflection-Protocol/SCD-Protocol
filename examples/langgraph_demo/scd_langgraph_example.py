@@ -7,7 +7,7 @@ inside a simple LangGraph workflow.
 
 from typing import TypedDict
 
-from langgraph.graph import StateGraph, END
+from langgraph.graph import StateGraph
 from mirrordna_scd import SCDProtocol
 
 
