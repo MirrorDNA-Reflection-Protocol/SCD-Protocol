@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv/
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/
+
+# SCD State Files (don't commit runtime state)
+*.json
+!examples/**/*.json
+agent_state.json
+scd_state.json
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# MyPy
+.mypy_cache/
+.ruff_cache/
