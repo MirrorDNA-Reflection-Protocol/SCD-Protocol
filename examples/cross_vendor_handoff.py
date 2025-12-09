@@ -4,7 +4,6 @@ Demonstrates starting a conversation on one AI platform and continuing on anothe
 """
 
 from mirrordna_scd import SCDProtocol
-import json
 
 print("=" * 60)
 print("SCENARIO: Cross-Vendor Handoff")
@@ -46,7 +45,7 @@ if success:
         "sections_completed": ["introduction", "methodology", "results"]
     })
     
-    print(f"\n[Step 4] Continued work on ChatGPT:")
+    print("\n[Step 4] Continued work on ChatGPT:")
     print(f"  New turn: {scd_chatgpt.get_turn()}")
     print(f"  Sections: {scd_chatgpt.get_state()['state']['sections_completed']}")
     print("\n✅ Cross-vendor handoff successful!")
