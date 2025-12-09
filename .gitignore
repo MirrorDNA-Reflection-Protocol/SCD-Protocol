@@ -15,8 +15,10 @@ build/
 *.egg-info/
 
 # SCD State Files (don't commit runtime state)
+# SCD State Files (don't commit runtime state)
 *.json
-!examples/**/*.json
+scd_cli_state.json
+scd_cross_vendor_state.json
 agent_state.json
 scd_state.json
 
