@@ -165,8 +165,10 @@ Verify state integrity.
 ## Examples
 
 See [examples/](examples/) directory:
-- `basic_usage.py` - Getting started
-- `cross_vendor_handoff.py` - Platform continuity
+- `basic_demo.py` - Minimal state, checksum, and context demo
+- `cli_repl_demo.py` - Interactive REPL using SCD as session memory
+- `cross_vendor_handoff_demo.py` - Simulated platform handoff
+- `langgraph_demo/` - Deterministic workflow demo with LangGraph
 
 ## Citation
 
