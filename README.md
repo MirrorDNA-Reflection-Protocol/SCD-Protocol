@@ -2,13 +2,26 @@
 
 **Stop guessing. Start verifying.**
 
-> Created by **[Paul Desai](https://github.com/MirrorDNA-Reflection-Protocol)** (`~active-mirror-paul`) — Goa, India
+> ⟡ Created by **[Paul Desai](https://github.com/MirrorDNA-Reflection-Protocol)** — Goa, India
 
-**Production status:** Running 24/7 in [MirrorBrain](../MirrorBrain-Setup) sovereign AI stack since January 2026
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17787619.svg)](https://doi.org/10.5281/zenodo.17787619)
 [![PyPI version](https://img.shields.io/pypi/v/mirrordna-scd.svg)](https://pypi.org/project/mirrordna-scd/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![MirrorDNA](https://img.shields.io/badge/MirrorDNA-Protocol-purple)](https://github.com/MirrorDNA-Reflection-Protocol)
+
+**Production status:** Running 24/7 in [MirrorBrain](https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain) sovereign AI stack since January 2026
+
+---
+
+## What This Is NOT
+
+- ❌ **Not another chatbot wrapper** — SCD is infrastructure, not UI
+- ❌ **Not prompt engineering** — This is state management with cryptographic verification
+- ❌ **Not vendor lock-in** — Works with ANY LLM (Claude, ChatGPT, Gemini, Ollama, etc.)
+- ❌ **Not blockchain** — Simple, fast, deterministic hashing without consensus overhead
+
+---
 
 ## The Problem
 
@@ -193,17 +206,30 @@ Issues and PRs welcome at [GitHub](https://github.com/MirrorDNA-Reflection-Proto
 
 MIT License - see [LICENSE](LICENSE)
 
+## MirrorDNA Ecosystem
+
+SCD Protocol is part of the **MirrorDNA** ecosystem for sovereign AI:
+
+| Component | Description | Link |
+|-----------|-------------|------|
+| **MirrorDNA Standard** | Constitutional anchor for reflective AI | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Standard) |
+| **SCD Protocol** | Deterministic state management (you are here) | [PyPI](https://pypi.org/project/mirrordna-scd/) |
+| **MirrorBrain** | Local-first AI orchestration runtime | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain) |
+| **Active Mirror Identity** | Portable AI identity (Mirror Seed) | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/active-mirror-identity) |
+| **MirrorGate** | Inference control plane / policy proxy | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/MirrorGate) |
+| **Glyph Engine** | Cryptographic attestation for AI artifacts | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/glyph-engine) |
+
 ## Links
 
-- **GitHub**: https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol
+- **Research Paper**: [Zenodo DOI 10.5281/zenodo.17787619](https://doi.org/10.5281/zenodo.17787619)
+- **GitHub**: https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol
 - **PyPI**: https://pypi.org/project/mirrordna-scd/
-- **Documentation**: [Coming soon]
-- **Discord**: [Coming soon]
+- **Website**: https://activemirror.ai
 
 ---
 
-**⟡ Built by [MirrorDNA](https://github.com/MirrorDNA-Reflection-Protocol)**  
-*Making AI deterministic, one checksum at a time.*
+**⟡ Built by [MirrorDNA](https://github.com/MirrorDNA-Reflection-Protocol)**
+*Reflection over prediction. Memory that persists.*
 
 ---
 
