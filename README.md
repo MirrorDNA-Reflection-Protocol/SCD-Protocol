@@ -4,6 +4,8 @@
 
 > Created by **[Paul Desai](https://github.com/MirrorDNA-Reflection-Protocol)** (`~active-mirror-paul`) — Goa, India
 
+**Production status:** Running 24/7 in [MirrorBrain](../MirrorBrain-Setup) sovereign AI stack since January 2026
+
 [![PyPI version](https://img.shields.io/pypi/v/mirrordna-scd.svg)](https://pypi.org/project/mirrordna-scd/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
