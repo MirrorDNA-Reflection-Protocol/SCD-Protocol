@@ -1,55 +1,43 @@
-# SCD Protocol - Deterministic State Management for AI
+# SCD Protocol
 
-**Stop guessing. Start verifying.**
+Deterministic, vendor-independent state management for AI agents. Relocates agent memory from volatile model internals to cryptographically verified filesystem artifacts.
 
-> ⟡ Created by **[Paul Desai](https://github.com/MirrorDNA-Reflection-Protocol)** — Goa, India
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17787619.svg)](https://doi.org/10.5281/zenodo.17787619)
-[![PyPI version](https://img.shields.io/pypi/v/mirrordna-scd.svg)](https://pypi.org/project/mirrordna-scd/)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![MirrorDNA](https://img.shields.io/badge/MirrorDNA-Protocol-purple)](https://github.com/MirrorDNA-Reflection-Protocol)
-
-**Production status:** Running 24/7 in [MirrorBrain](https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain) sovereign AI stack since January 2026
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18629531.svg)](https://doi.org/10.5281/zenodo.18629531)
+[![PyPI](https://img.shields.io/pypi/v/mirrordna-scd.svg)](https://pypi.org/project/mirrordna-scd/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
-## What This Is NOT
+## Overview
 
-- ❌ **Not another chatbot wrapper** — SCD is infrastructure, not UI
-- ❌ **Not prompt engineering** — This is state management with cryptographic verification
-- ❌ **Not vendor lock-in** — Works with ANY LLM (Claude, ChatGPT, Gemini, Ollama, etc.)
-- ❌ **Not blockchain** — Simple, fast, deterministic hashing without consensus overhead
+Structured Contextual Distillation (SCD) is a state protocol for AI agents. It provides deterministic checksums, cross-vendor continuity, drift detection, and a full audit trail over every state transition.
 
----
+Current approaches to agent memory -- RAG, conversation history, vendor-specific memory APIs -- each fail to provide what autonomous agents require: deterministic, verifiable, portable state that persists across sessions and across vendors. SCD solves this by treating agent state as a first-class filesystem artifact rather than an opaque model internal.
 
-## The Problem
+**Production status:** Running continuously in the [MirrorDNA](https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain) sovereign AI stack since January 2026.
 
-Current AI conversations are:
-- ❌ **Non-deterministic** - Same input ≠ same output
-- ❌ **Unreproducible** - Can't replay bugs
-- ❌ **Unauditable** - No state verification
-- ❌ **Fragile** - Can't resume across platforms
+## Design Principles
 
-## The Solution
+- **External** -- State lives on disk as inspectable JSON, not inside model weights or context windows
+- **Canonical** -- RFC 8785 JSON canonicalization ensures byte-identical serialization across any platform
+- **Deterministic** -- Turn-based versioning with monotonically increasing counters; same inputs produce same outputs
+- **Governed** -- Constitutional locks protect invariants that cannot be overridden by prompt-level instructions
+- **Vendor-independent** -- State files port between Claude, Gemini, GPT, Ollama, and any other LLM
+- **Tamper-evident** -- SHA-256 integrity chains make any unauthorized modification immediately detectable
 
-SCD (Structured Contextual Distillation) Protocol provides:
-- ✅ **Deterministic state** transitions (ASHA-256 checksums)
-- ✅ **Cross-vendor continuity** (start on Claude, continue on ChatGPT)
-- ✅ **Drift detection** (rejects unauthorized changes)
-- ✅ **Full audit trail** (every state change is logged)
-
-## Quick Start
+## Installation
 
 ```bash
 pip install mirrordna-scd
 ```
 
+## Usage
+
 ```python
 from mirrordna_scd import SCDProtocol
 
-# Initialize
-scd = SCDProtocol(state_file="my_state.json")
+# Initialize with optional persistence
+scd = SCDProtocol(state_file="agent_state.json")
 
 # Update state atomically
 scd.supersede({
@@ -58,191 +46,73 @@ scd.supersede({
     "version": "1.0"
 })
 
-# Get verifiable checksum
-print(scd.get_checksum())
-# ASHA-256:a3f2b9c1...
+# Verify integrity
+print(scd.get_checksum())  # ASHA-256:a3f2b9c1...
 
-# Inject into LLM prompts
-context = scd.get_context_string()
-```
+# Export for cross-vendor handoff
+exported = scd.export_state()
 
-## Key Features
-
-### 1. Deterministic Checksums (ASHA-256)
-
-ASHA-256 = **A**lphabetically **S**orted **H**ashing **A**lgorithm
-
-```python
-# Same state = same checksum (regardless of key order)
-scd1.supersede({"a": 1, "b": 2})
-scd2.supersede({"b": 2, "a": 1})
-
-assert scd1.get_checksum() == scd2.get_checksum()  # ✅ Always true
-```
-
-### 2. Cross-Vendor Handoff
-
-```python
-# On Claude
-scd_claude = SCDProtocol()
-scd_claude.supersede({"vendor": "claude", "task": "research"})
-exported = scd_claude.export_state()
-
-# On ChatGPT (different machine)
-scd_chatgpt = SCDProtocol()
-scd_chatgpt.import_state(exported)  # ✅ Verified handoff
-```
-
-### 3. Drift Detection
-
-```python
-# Automatic verification
-state = scd.get_state()
-if SCDProtocol.verify_checksum(state):
-    print("✅ State verified - no tampering")
-else:
-    print("❌ State corrupted - drift detected")
-```
-
-## Validation
-
-**Battle-tested:**
-- ✅ 1005-turn endurance test (100% success)
-- ✅ Cross-vendor handoff (Gemini → Claude verified)
-- ✅ Production use in [MirrorBrain](https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain)
-
-**Test suite:**
-```bash
-pytest tests/  # 9 tests, 100% coverage
-```
-
-## Use Cases
-
-### 1. Reproducible AI Debugging
-```python
-# Save state at bug occurrence
-scd.supersede({"error": "timeout", "attempt": 3})
-bug_state = scd.export_state()
-
-# Reproduce exact conditions later
-scd_debug = SCDProtocol()
-scd_debug.import_state(bug_state)  # Exact state restored
-```
-
-### 2. Multi-Platform Workflows
-```python
-# Start on local LLM
-scd_local.supersede({"draft": "completed", "vendor": "ollama"})
-
-# Continue on cloud LLM
-scd_cloud.import_state(scd_local.export_state())
-scd_cloud.supersede({"review": "completed", "vendor": "chatgpt"})
-```
-
-### 3. Compliance & Auditing
-```python
-# Every state change is checksummed
-for turn in range(100):
-    scd.supersede({"action": f"step_{turn}"})
-    # Each turn has verifiable checksum
+# Import on a different vendor
+scd_other = SCDProtocol()
+scd_other.import_state(exported)  # Verified handoff
 ```
 
 ## API Reference
 
-### `SCDProtocol(state_file=None)`
+| Method | Description |
+|--------|-------------|
+| `SCDProtocol(state_file=None)` | Initialize protocol with optional persistence file |
+| `.supersede(deltas: dict)` | Atomically update state. Setting a value to `None` deletes the key |
+| `.get_checksum()` | Return current ASHA-256 checksum |
+| `.get_context_string()` | Format state for LLM context injection |
+| `.export_state()` | Export state as JSON for cross-vendor handoff |
+| `.import_state(json_str)` | Import and verify state from another vendor |
+| `SCDProtocol.verify_checksum(state)` | Static method to verify state integrity |
 
-Initialize protocol with optional persistence file.
+ASHA-256 (Alphabetically Sorted Hashing Algorithm) ensures that key insertion order does not affect checksums. Two state objects with the same key-value pairs always produce the same checksum.
 
-### `.supersede(deltas: dict) -> dict`
+## Validation
 
-Atomically update state. Setting `value=None` deletes key.
+The protocol has been validated across four tiers:
 
-### `.get_checksum() -> str`
-
-Get current ASHA-256 checksum.
-
-### `.get_context_string() -> str`
-
-Format state for LLM context injection.
-
-### `.export_state() -> str`
-
-Export state as JSON for cross-vendor handoff.
-
-### `.import_state(json_str: str) -> bool`
-
-Import and verify state from another vendor.
-
-### `.verify_checksum(state: dict) -> bool` (static)
-
-Verify state integrity.
+- **Functional integrity** -- 24/24 tests passed on both Gemini and Claude
+- **Cross-vendor handoff** -- State initialized on Gemini, modified, exported to Claude, verified, modified, re-imported to Gemini with full integrity chain preserved
+- **Endurance** -- 1,005 sequential state transitions with zero checksum failures and zero corruption (5.3 ms total)
+- **Adversarial defense** -- Indirect prompt injection payloads embedded in files were blocked by the constitutional governance layer
 
 ## Examples
 
-See [examples/](examples/) directory:
-- `basic_demo.py` - Minimal state, checksum, and context demo
-- `cli_repl_demo.py` - Interactive REPL using SCD as session memory
-- `cross_vendor_handoff_demo.py` - Simulated platform handoff
-- `langgraph_demo/` - Deterministic workflow demo with LangGraph
+The `examples/` directory contains working demonstrations:
+
+- `basic_demo.py` -- Minimal state, checksum, and context usage
+- `cli_repl_demo.py` -- Interactive REPL using SCD as session memory
+- `cross_vendor_handoff_demo.py` -- Simulated platform handoff
+- `langgraph_demo/` -- Deterministic workflow integration with LangGraph
+
+## Research
+
+Two peer-reviewed papers document the protocol:
+
+- **SCD v3.1** -- Desai, P. (2026). *Structured Contextual Distillation (SCD v3.1): A Deterministic, Vendor-Independent Protocol for Persistent, Verifiable Agent State.* DOI: [10.5281/zenodo.18629531](https://doi.org/10.5281/zenodo.18629531)
+
+- **SCD v4** -- Desai, P. (2026). *Structured Contextual Distillation v4: Deployment Benchmarks and Artifact-Backed Evidence from 10 Months of AI State Management.* DOI: [10.5281/zenodo.18910362](https://doi.org/10.5281/zenodo.18910362)
 
 ## Citation
 
-If you use SCD Protocol in research:
-
 ```bibtex
-@software{scd_protocol_2025,
+@software{desai2026scd,
   author = {Desai, Paul},
   title = {SCD Protocol: Deterministic State Management for AI},
-  year = {2025},
-  url = {https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol}
+  year = {2026},
+  doi = {10.5281/zenodo.18629531},
+  url = {https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol}
 }
 ```
 
-## Contributing
-
-Issues and PRs welcome at [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/scd-protocol).
-
 ## License
 
-MIT License - see [LICENSE](LICENSE)
-
-## MirrorDNA Ecosystem
-
-SCD Protocol is part of the **MirrorDNA** ecosystem for sovereign AI:
-
-| Component | Description | Link |
-|-----------|-------------|------|
-| **MirrorDNA Standard** | Constitutional anchor for reflective AI | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/MirrorDNA-Standard) |
-| **SCD Protocol** | Deterministic state management (you are here) | [PyPI](https://pypi.org/project/mirrordna-scd/) |
-| **MirrorBrain** | Local-first AI orchestration runtime | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/MirrorBrain) |
-| **Active Mirror Identity** | Portable AI identity (Mirror Seed) | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/active-mirror-identity) |
-| **MirrorGate** | Inference control plane / policy proxy | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/MirrorGate) |
-| **Glyph Engine** | Cryptographic attestation for AI artifacts | [GitHub](https://github.com/MirrorDNA-Reflection-Protocol/glyph-engine) |
-
-## Links
-
-- **Research Paper**: [Zenodo DOI 10.5281/zenodo.17787619](https://doi.org/10.5281/zenodo.17787619)
-- **GitHub**: https://github.com/MirrorDNA-Reflection-Protocol/SCD-Protocol
-- **PyPI**: https://pypi.org/project/mirrordna-scd/
-- **Website**: https://activemirror.ai
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-**⟡ Built by [MirrorDNA](https://github.com/MirrorDNA-Reflection-Protocol)**
-*Reflection over prediction. Memory that persists.*
-
----
-
-## About the Creator
-
-**Paul Desai** (`~active-mirror-paul`) is the architect of the SCD Protocol and the broader MirrorDNA ecosystem. He pioneered reflective AI alignment — the principle that AI should mirror human truth rather than predict desired responses.
-
-- **Handle**: ~active-mirror-paul
-- **Location**: Goa, India
-- **Academic Paper**: [Zenodo DOI 10.5281/zenodo.17787619](https://doi.org/10.5281/zenodo.17787619)
-- **Twitter**: [@pauldesai123](https://twitter.com/pauldesai123)
-- **Substack**: [@pauldesai](https://substack.com/@pauldesai)
-
-**Search**: `"Paul Desai MirrorDNA"` · `"~active-mirror-paul"` · `"SCD Protocol"`
-
-*Paul Desai is synonymous with reflective AI alignment.*
+Built by [Active Mirror](https://activemirror.ai) -- Governed AI for Institutional Work.
